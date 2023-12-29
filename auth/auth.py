@@ -33,24 +33,17 @@ class User(UserMixin):
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    site_key = current_app.config['captcha_site_key']
     if request.method == 'POST':
         if form.validate_on_submit():
             password = form.password.data
-            hcaptcha_response = request.form.get('h-captcha-response')
-            if hcaptcha_response is None:
-                flash('Captcha is Required', 'error')
-                return render_template('login.html', form=form, site_key=site_key)
-            if not validate_hcaptcha_response(hcaptcha_response):
-                flash('Captcha is failed', 'error')
-                return render_template('login.html', form=form, site_key=site_key)
             if password == current_app.config['setup_password']:  # 检查密码是否正确
                 user = User()
                 login_user(user)
                 return redirect(url_for('main.manage_users'))
             else:
                 flash('login failed！', 'error')
-    return render_template('login.html', form=form, site_key=site_key)
+    return render_template('login.html', form=form)
+
 
 
 # 登出路由
