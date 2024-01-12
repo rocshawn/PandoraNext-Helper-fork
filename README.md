@@ -1,3 +1,6 @@
+## 个人用，删除人机验证
+
+
 # PandoraNext Helper  
 ![Static Badge](https://img.shields.io/badge/Next-8A2BE2?label=Pandora)
 ![Static Badge](https://img.shields.io/badge/3.8%20%7C%203.9%20%7C%203.10-blue?label=Python)
